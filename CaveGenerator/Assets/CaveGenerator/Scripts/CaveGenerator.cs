@@ -129,7 +129,7 @@ namespace ProceduralCave
         {
             // 3 because we're passing ringsPerChunk + 3 
             // path positions and polys to the mesh generator:
-            // - n rings = n polys + 1
+            // - n polys = n rings + 1
             // - also, we need 2 additional path positions  
             //   for calculating tangents at mesh start & end
             return stepCount % ringsPerChunk == 3 && stepCount > 3;
