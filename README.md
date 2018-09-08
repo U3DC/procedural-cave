@@ -4,9 +4,4 @@
 
 A simple 3D cave generator with a couple of config options and animated properties.
 
-
-TODO...
-
-* Real curvature. Cave chunks can shift in x/y direction, but are always added at fixed intervals along the z-axis.
-* More efficient mesh generation. Each triangle has its dedicated vertices. The number of vertices should be reduced for smooth areas.
-* Branching tunnels!
+It uses the [geometry3Sharp](https://github.com/gradientspace/geometry3Sharp) library. Add the string **G3\_USING\_UNITY** to the **Scripting Define Symbols** field and check the **Allow 'unsafe' Code** box in your project's **Player Settings**.
