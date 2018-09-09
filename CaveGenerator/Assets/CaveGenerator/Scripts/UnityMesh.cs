@@ -119,7 +119,7 @@ namespace ProceduralCave
             List<Vector3d> tmpVertices = new List<Vector3d>(vertices);
             //List<Vector3f> tmpNormals = new List<Vector3f>(normals);
             List<Vector2f> tmpUV = new List<Vector2f>(uv);
-            List<Colorf> tmpcolors = new List<Colorf>(colors);
+            List<Colorf> tmpColors = new List<Colorf>(colors);
             List<int> tmpTriangles = new List<int>(triangles);
             bool bUV = uv.Count > 0;
             bool bCol = colors.Count > 0;
@@ -144,7 +144,7 @@ namespace ProceduralCave
                                 if (bUV)
                                     tmpUV.Add(uv[vi]);
                                 if (bCol)
-                                    tmpcolors.Add(colors[vi]);
+                                    tmpColors.Add(colors[vi]);
 
                                 vertexUseCount[vi]--;
                             }
@@ -164,7 +164,7 @@ namespace ProceduralCave
                 tmpVertices.Clear();
                 //tmpNormals.Clear();
                 tmpUV.Clear();
-                tmpcolors.Clear();
+                tmpColors.Clear();
                 tmpTriangles.Clear();
 
                 foreach (TriangleInfo triangle in triangleInfo)
@@ -181,7 +181,7 @@ namespace ProceduralCave
                         if (bUV)
                             tmpUV.Add(uv[vi]);
                         if (bCol)
-                            tmpcolors.Add(colors[vi]);
+                            tmpColors.Add(colors[vi]);
                     }
                 }
             }
@@ -189,7 +189,7 @@ namespace ProceduralCave
             vertices = tmpVertices;
             //normals = tmpNormals;
             uv = tmpUV;
-            colors = tmpcolors;
+            colors = tmpColors;
             triangles = tmpTriangles.ToArray();
         }
 

@@ -28,9 +28,7 @@ namespace ProceduralCave
             {
                 isReady = true;
                 chunk = hit.collider.GetComponent<Chunk>();
-                iPath = GetClosestPathIndex(transform.position);
-                direction = GetPathDirection(iPath);
-
+                
                 if (rb.velocity.magnitude < 10f)
                     rb.AddForce(direction * 20f, ForceMode.Acceleration);
                 else if (rb.velocity.magnitude > 15f)
@@ -43,6 +41,9 @@ namespace ProceduralCave
         {
             if (isReady)
             {
+                iPath = GetClosestPathIndex(transform.position);
+                direction = GetPathDirection(iPath);
+
                 cam.transform.position = Vector3.Lerp(cam.transform.position, 
                                                       chunk.absPath[iPath], 0.1f);
                 cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation,

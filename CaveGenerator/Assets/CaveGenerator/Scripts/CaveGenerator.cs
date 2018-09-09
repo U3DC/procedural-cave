@@ -62,6 +62,7 @@ namespace ProceduralCave
             tmpRelPath = new List<Vector3>();
             tmpSeam = meshGen.Seam;
 
+            Chunk.InitRecycler(chunkPrefab, transform);
             // Create first chunk.
             BatchUpdate(ringsPerChunk + 3);
         }
@@ -87,11 +88,11 @@ namespace ProceduralCave
 
                 if (transform.childCount > 20)
                 {
-                    transform.GetChild(0).GetComponent<Chunk>().Destroy();
+                    Chunk.Release(transform.GetChild(0).GetComponent<Chunk>());
                 }
             }
 
-            //AnimateSharedMaterial();
+            // AnimateSharedMaterial();
         }
 
         // Chunk creation should be agnostic to wether new 
@@ -129,7 +130,7 @@ namespace ProceduralCave
         {
             // 3 because we're passing ringsPerChunk + 3 
             // path positions and polys to the mesh generator:
-            // - n rings = n polys + 1
+            // - n polys = n rings + 1
             // - also, we need 2 additional path positions  
             //   for calculating tangents at mesh start & end
             return stepCount % ringsPerChunk == 3 && stepCount > 3;
@@ -143,7 +144,6 @@ namespace ProceduralCave
 
             Vector3d endPos = lPath[nPolys];
             float hrzAngle = Vector2.SignedAngle(Vector2.up, (Vector2)endPos.xz) * 2f;
-
             for (int i = 0; i < lPath.Count; i++)
             {
                 tmpAbsPath.Add((Vector3)lPath[i]);
@@ -152,11 +152,7 @@ namespace ProceduralCave
                 tmpRelPath.Add((Vector3)lPath[i]);
             }
 
-            tmpChunk = Instantiate(chunkPrefab,
-                                   chunkPos,
-                                   Quaternion.Inverse(chunkRot),
-                                   transform).GetComponent<Chunk>();
-
+            tmpChunk = Chunk.Retrieve(chunkPos, Quaternion.Inverse(chunkRot));
             // Position & rotation offset for next chunk prefab.
             chunkPos = (Vector3)endPos;
             chunkRot = Quaternion.AngleAxis(hrzAngle, Vector3.up);
