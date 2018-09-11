@@ -6,6 +6,7 @@ namespace ProceduralCave
 {
     public class Chunk : MonoBehaviour
     {
+    	public static int nActive;
         private static Stack<Chunk> inactive;
         private static Chunk prefab;
         private static Transform parent;
@@ -23,6 +24,7 @@ namespace ProceduralCave
             chunk.transform.SetAsLastSibling();
             chunk.transform.position = pos;
             chunk.transform.rotation = rot;
+            nActive++;
             return chunk;
         }
 
@@ -30,6 +32,7 @@ namespace ProceduralCave
         {
             chunk.Clear();
             inactive.Push(chunk);
+            nActive--;
             return inactive.Count;
         }
 

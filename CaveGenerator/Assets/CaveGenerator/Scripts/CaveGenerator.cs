@@ -86,7 +86,7 @@ namespace ProceduralCave
                     BatchUpdate(ringsPerChunk);
                 }
 
-                if (transform.childCount > 20)
+                if (Chunk.nActive > 20)
                 {
                     Chunk.Release(transform.GetChild(0).GetComponent<Chunk>());
                 }
