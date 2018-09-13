@@ -143,7 +143,7 @@ namespace ProceduralCave
             tmpRelPath.Clear();
 
             Vector3d endPos = lPath[nPolys];
-            float hrzAngle = Vector2.SignedAngle(Vector2.up, (Vector2)endPos.xz) * 2f;
+            float hrzAngle = Vector2.SignedAngle(Vector2.up, (Vector2)endPos.xz);
             for (int i = 0; i < lPath.Count; i++)
             {
                 tmpAbsPath.Add((Vector3)lPath[i]);

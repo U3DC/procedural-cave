@@ -37,7 +37,6 @@ namespace ProceduralCave
         }
 
         [HideInInspector] public int id;
-        [HideInInspector] public Vector3 absCenter;
         // First path pos of this chunk is
         // last path pos of previous chunk.
         [HideInInspector] public List<Vector3> absPath;
@@ -46,7 +45,6 @@ namespace ProceduralCave
         private int nRocks;
 
         private List<Vector3> relPath;
-        private Vector3 relCenter;
 
         private void Awake()
         {
@@ -62,8 +60,6 @@ namespace ProceduralCave
             this.name = "Chunk#" + id;
             this.relPath = relPath;
             this.absPath = absPath;
-            relCenter = mesh.bounds.center;
-            absCenter = transform.position + relCenter;
 
             GetComponent<MeshFilter>().mesh = mesh;
             GetComponent<MeshCollider>().sharedMesh = mesh;
